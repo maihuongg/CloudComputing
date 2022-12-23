@@ -94,7 +94,7 @@ def searchemployee():
     if request.method == 'POST':
         key = request.form['key']
         db = get_database()
-        emp_cur = db.execute('select * from emp where name like ?', [key])
+        emp_cur = db.execute('select * from emp where name like ?', ["%"+key+"%"])
         searchemp = emp_cur.fetchall()
         return render_template('searchemployee.html', user = user, searchemp = searchemp, key=key)    
     return render_template('searchemployee.html', user = user)
